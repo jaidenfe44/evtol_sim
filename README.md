@@ -2,7 +2,7 @@
 
 ## Build and Run
 
-TODO
+A `build.sh` script is supplied in the top most directory. To build and execute the simulator, run `./build.sh -t sim`. This builds the simulator and runs the simulator executable. The simulator executable is stored at `build/sim`. To run the test suite, run `./build.sh -t test`. Similarly, this builds and runs the test suite executable. The test suite executable is stored at `build/test`. In addition, to access the help menu, simply add the `-h` flag.
 
 ## Objective
 
@@ -12,9 +12,10 @@ Show us your awesome skills! We want to see your design, coding, documentation, 
 
 This work must be coded in C++, and submitted through GitHub, BitBucket, or Gitlab. Upload the documented code to your personal account and send us a link. We may look at the git history to see how you use version control.
 
-At Joby we love good OOP design. Please exercise the basic tenets of OOP, using relevant principles where appropriate. We’re looking for robust, testable, modular, and well-documented code.
+Please exercise the basic tenets of OOP, using relevant principles where appropriate. We’re looking for robust, testable, modular, and well-documented code.
 
 Unit Testing is a big part of our development process. Please include just a few examples of unit tests or how your code is testable. Tests don't necessarily need to run in any test framework, but please be ready to talk about what and how you tested your code.  To dos and notes are OK. If you want to incorporate an idea that makes sense in a real project, but would take too much time to implement, just leave a note. For example: 
+
 ```
 // Todo: Refactor database to use hashmap rather than raw array for
 // <xyz> reasons.. 
