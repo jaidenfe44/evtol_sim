@@ -69,21 +69,21 @@ The following is a flow diagram representing the design of the simulation main l
 ![eVtol_sim_main_flow_diagram](https://github.com/user-attachments/assets/ac0cfc8c-c012-4701-b366-e71c4d729ae7)
 
 
-## Port Design
+## Port and Charger Design
 
 TODO
 
-The following is a flow diagram representing the design fo the `Port::step()` functionality:
+The following is a flow diagram representing the design of the `Port::step()` functionality:
 
 ![eVtol_sim_Port_step_flow_diagram](https://github.com/user-attachments/assets/b17392d4-20b8-411c-bab5-fe7a112a92ff)
 
 TODO
 
+The following is a flow digram representing the design of the `Port::addToCharger()` and `Charger::add()` functionality:
 
-## Charger Design
+![eVtol_sim_add_flow_diagram](https://github.com/user-attachments/assets/fce16370-801b-49ec-b854-951e012f8b5f)
 
 TODO
-
 
 ## eVTOL Vehicle Design
 
