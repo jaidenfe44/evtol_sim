@@ -71,25 +71,26 @@ The following is a flow diagram representing the design of the simulation main l
 
 ## Port and Charger Design
 
-TODO
+The `Port::step()` function drives the simulation execution one sim second at a time. This is the main Port function that manage all vehicle and charger objects and drives the vehicles state transitions.
 
 The following is a flow diagram representing the design of the `Port::step()` functionality:
 
 ![eVtol_sim_Port_step_flow_diagram](https://github.com/user-attachments/assets/b17392d4-20b8-411c-bab5-fe7a112a92ff)
 
-TODO
+The number of chargers is specified in the `System.hpp` file as `numChargers`. All of the chargers are contained within the `Port` object, which handles queue logic and simulation step functionality. The queue logic is implemented through two main functions: `Port::addToCharger()` and `Port::removeFromCharger()`.
 
 The following is a flow digram representing the design of the `Port::addToCharger()` and `Charger::add()` functionality:
 
 ![eVtol_sim_add_flow_diagram](https://github.com/user-attachments/assets/2aad3acc-ed11-4454-ab14-ceb78dcaea83)
 
-TODO
+Here we see that the `Port` object keeps track of the next available Charger in a variable called `Port::nextAvailableCharger`, which contains a Charger pointer to the charger array object that has the lowest availability score. In this simulation, the availability score is just the size of the corresponding `Charger::chargingQueue`.
+
 
 The following is a flow diagram representing the design of the `Port::removeFromCharger()` and `Charger::remove()` functionality:
 
 ![eVtol_sim_remove_flow_diagram](https://github.com/user-attachments/assets/ee215f76-4bed-4ce5-9bf3-1dfe8dc9560d)
 
-TODO
+Here, we leverage the stored `eVtol::vehicleCharger` variable that contains the Id (or index) of the Charger that particular vehicle is charging at. This allows the `Port` to index directly into the Charger array and call `Charger::remove()` directly on the correct `Charger` object. Once the vehicle is removed from the queue, we check if the queue is empty. If it is not empty, then we need to update the state of the `eVtol` vehicle now at the front of the queue to `eCharging` instead of `eQueued` so that the `Port::step()` function decrements the `eVtol::taskTime` (down counter representing how many steps to "execute" the current task and take up resources until it can switch states again) rather than incrementing the `eVtol::queueTime` (up counter representing the amount of time spent in a queue waiting for available resources).
 
 
 ## eVTOL Vehicle Design
