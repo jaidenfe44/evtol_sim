@@ -37,7 +37,7 @@ class Port
 		std::array<eVtol, numVehicles> vehicles_a;
 		std::array<Charger, numChargers> chargers_a;
 
-        unsigned int nextAvailableCharger = 0;
+        Charger* nextAvailableCharger = nullptr;
 
         void updateNextAvailable();
 };
