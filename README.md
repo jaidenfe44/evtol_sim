@@ -58,4 +58,39 @@ Please include the statistics recorded during at least one run of the simulation
 
 # Design Scratchpad
 
+This section is used as a scratch pad space for notes and design considerations to describe my though process when approaching the exercise.
+
+## Main Loop Design
+
+The sim main loop will be in charge of system count and stepping through the simulator. The `system count` represents seconds the simulation is running. In this approach the sim runtime is `10800 seconds (3 hours)`. The main.cpp file implements the system runtime loop (in seconds) and calls the `Port::step()` function for every simulation second.
+
+The following is a flow diagram representing the design of the simulation main loop.
+
+![eVtol_sim_main_flow_diagram](https://github.com/user-attachments/assets/ac0cfc8c-c012-4701-b366-e71c4d729ae7)
+
+
+## Port Design
+
+TODO
+
+
+## Charger Design
+
+TODO
+
+
+## eVTOL Vehicle Design
+
+TODO
+
+
+---
+
+# Execution Results
+
+TODO
+
+
+# Test Suite Results
+
 TODO
