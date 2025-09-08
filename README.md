@@ -85,6 +85,13 @@ The following is a flow digram representing the design of the `Port::addToCharge
 
 TODO
 
+The following is a flow diagram representing the design of the `Port::removeFromCharger()` and `Charger::remove()` functionality:
+
+![eVtol_sim_remove_flow_diagram](https://github.com/user-attachments/assets/ee215f76-4bed-4ce5-9bf3-1dfe8dc9560d)
+
+TODO
+
+
 ## eVTOL Vehicle Design
 
 TODO
