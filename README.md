@@ -81,7 +81,7 @@ TODO
 
 The following is a flow digram representing the design of the `Port::addToCharger()` and `Charger::add()` functionality:
 
-![eVtol_sim_add_flow_diagram](https://github.com/user-attachments/assets/fce16370-801b-49ec-b854-951e012f8b5f)
+![eVtol_sim_add_flow_diagram](https://github.com/user-attachments/assets/2aad3acc-ed11-4454-ab14-ceb78dcaea83)
 
 TODO
 
