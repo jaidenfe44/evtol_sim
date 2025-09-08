@@ -73,6 +73,12 @@ The following is a flow diagram representing the design of the simulation main l
 
 TODO
 
+The following is a flow diagram representing the design fo the `Port::step()` functionality:
+
+![eVtol_sim_Port_step_flow_diagram](https://github.com/user-attachments/assets/b17392d4-20b8-411c-bab5-fe7a112a92ff)
+
+TODO
+
 
 ## Charger Design
 
