@@ -102,7 +102,56 @@ TODO
 
 # Execution Results
 
-TODO
+```
+Building Sim
+
+Generating Simulation Report...
+
+Alpha eVtol Statistics:
+    Number of Vehicles:                            2
+    Average Flight Time (Per Flight):            100 minutes
+    Average Time Charging (Per Charge Session):   36 minutes
+    Average Distance Traveled (Per Flight):      200 miles
+    Average Time Waiting for Charger:             56 minutes
+    Total Number of Faults:                        3
+    Total Number of Passenger Miles:            2400 miles
+
+Bravo eVtol Statistics:
+    Number of Vehicles:                            7
+    Average Flight Time (Per Flight):             39 minutes
+    Average Time Charging (Per Charge Session):   12 minutes
+    Average Distance Traveled (Per Flight):       66 miles
+    Average Time Waiting for Charger:             94 minutes
+    Total Number of Faults:                        4
+    Total Number of Passenger Miles:            4620 miles
+
+Charlie eVtol Statistics:
+    Number of Vehicles:                            5
+    Average Flight Time (Per Flight):             36 minutes
+    Average Time Charging (Per Charge Session):   48 minutes
+    Average Distance Traveled (Per Flight):      100 miles
+    Average Time Waiting for Charger:             58 minutes
+    Total Number of Faults:                        0
+    Total Number of Passenger Miles:            3000 miles
+
+Delta eVtol Statistics:
+    Number of Vehicles:                            4
+    Average Flight Time (Per Flight):            100 minutes
+    Average Time Charging (Per Charge Session):   37 minutes
+    Average Distance Traveled (Per Flight):      150 miles
+    Average Time Waiting for Charger:             72 minutes
+    Total Number of Faults:                        3
+    Total Number of Passenger Miles:            1200 miles
+
+Echo eVtol Statistics:
+    Number of Vehicles:                            2
+    Average Flight Time (Per Flight):             50 minutes
+    Average Time Charging (Per Charge Session):   18 minutes
+    Average Distance Traveled (Per Flight):       25 miles
+    Average Time Waiting for Charger:             88 minutes
+    Total Number of Faults:                        4
+    Total Number of Passenger Miles:             200 miles
+```
 
 
 # Test Suite Results
