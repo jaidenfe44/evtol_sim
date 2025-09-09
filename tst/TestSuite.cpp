@@ -4,6 +4,8 @@
 #include <chrono>
 #include <cstdio>
 
+#include <iostream>
+
 void TestSuite::run()
 {
 	printf("Running Test Suite...\n");
@@ -20,8 +22,8 @@ void TestSuite::run()
 	// get end time 
 	auto end_t = std::chrono::system_clock::now();
 
-	// Store time duration (in milliseconds)
-	execTime = std::chrono::duration_cast<std::chrono::milliseconds>(end_t - start_t);
+	// Store time duration (in microseconds)
+	execTime = std::chrono::duration_cast<std::chrono::microseconds>(end_t - start_t);
 }
 
 
@@ -31,5 +33,5 @@ void TestSuite::report()
 	printf("    Passed: %i\n", passed);
 	printf("    Failed: %i\n", failed);
 
-	printf("\n    Runtime: %lld ms\n", execTime.count());
+	printf("\n    Runtime: %lld us\n", execTime.count());
 }

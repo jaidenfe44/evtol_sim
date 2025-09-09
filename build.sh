@@ -42,7 +42,8 @@ build_test() {
 			 -Itst/"
 
 	srcList="
-		tst/*.cpp "
+		tst/*.cpp
+        src/Charger.cpp "
 
 	defs="-D TEST_SUITE"
 

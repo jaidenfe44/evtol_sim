@@ -21,7 +21,7 @@ class TestSuite
 	private:
 		unsigned int passed = 0;
 		unsigned int failed = 0;
-		std::chrono::milliseconds execTime;
+		std::chrono::microseconds execTime;
 
 		// Test Cases
         TestCase_eVtol   tceVtol;

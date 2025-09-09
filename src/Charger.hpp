@@ -66,6 +66,10 @@ class Charger
          * TODO
          */
         std::queue<eVtol*> chargingQueue;
+
+    #ifdef TEST_SUITE
+        friend class TestCase_Charger;
+    #endif
 };
 
 #endif // CHARGER_HPP

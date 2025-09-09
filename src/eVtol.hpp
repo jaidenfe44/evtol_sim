@@ -147,7 +147,9 @@ class eVtol
             passMilesPerFlight = passengers * range;
         };
 
-	private:
+    #ifdef TEST_SUITE
+        friend class TestCase_Charger;
+    #endif
 };
 
 #endif // EVTOL_HPP
