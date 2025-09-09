@@ -58,4 +58,102 @@ Please include the statistics recorded during at least one run of the simulation
 
 # Design Scratchpad
 
+This section is used as a scratch pad space for notes and design considerations to describe my though process when approaching the exercise.
+
+## Main Loop Design
+
+The sim main loop will be in charge of system count and stepping through the simulator. The `system count` represents seconds the simulation is running. In this approach the sim runtime is `10800 seconds (3 hours)`. The main.cpp file implements the system runtime loop (in seconds) and calls the `Port::step()` function for every simulation second.
+
+The following is a flow diagram representing the design of the simulation main loop.
+
+![eVtol_sim_main_flow_diagram](https://github.com/user-attachments/assets/ac0cfc8c-c012-4701-b366-e71c4d729ae7)
+
+
+## Port and Charger Design
+
+The `Port::step()` function drives the simulation execution one sim second at a time. This is the main Port function that manage all vehicle and charger objects and drives the vehicles state transitions.
+
+The following is a flow diagram representing the design of the `Port::step()` functionality:
+
+![eVtol_sim_Port_step_flow_diagram](https://github.com/user-attachments/assets/b17392d4-20b8-411c-bab5-fe7a112a92ff)
+
+The number of chargers is specified in the `System.hpp` file as `numChargers`. All of the chargers are contained within the `Port` object, which handles queue logic and simulation step functionality. The queue logic is implemented through two main functions: `Port::addToCharger()` and `Port::removeFromCharger()`.
+
+The following is a flow digram representing the design of the `Port::addToCharger()` and `Charger::add()` functionality:
+
+![eVtol_sim_add_flow_diagram](https://github.com/user-attachments/assets/2aad3acc-ed11-4454-ab14-ceb78dcaea83)
+
+Here we see that the `Port` object keeps track of the next available Charger in a variable called `Port::nextAvailableCharger`, which contains a Charger pointer to the charger array object that has the lowest availability score. In this simulation, the availability score is just the size of the corresponding `Charger::chargingQueue`.
+
+
+The following is a flow diagram representing the design of the `Port::removeFromCharger()` and `Charger::remove()` functionality:
+
+![eVtol_sim_remove_flow_diagram](https://github.com/user-attachments/assets/ee215f76-4bed-4ce5-9bf3-1dfe8dc9560d)
+
+Here, we leverage the stored `eVtol::vehicleCharger` variable that contains the Id (or index) of the Charger that particular vehicle is charging at. This allows the `Port` to index directly into the Charger array and call `Charger::remove()` directly on the correct `Charger` object. Once the vehicle is removed from the queue, we check if the queue is empty. If it is not empty, then we need to update the state of the `eVtol` vehicle now at the front of the queue to `eCharging` instead of `eQueued` so that the `Port::step()` function decrements the `eVtol::taskTime` (down counter representing how many steps to "execute" the current task and take up resources until it can switch states again) rather than incrementing the `eVtol::queueTime` (up counter representing the amount of time spent in a queue waiting for available resources).
+
+
+## eVTOL Vehicle Design
+
+TODO
+
+
+---
+
+# Execution Results
+
+```
+Building Sim
+
+Generating Simulation Report...
+
+Alpha eVtol Statistics:
+    Number of Vehicles:                            2
+    Average Flight Time (Per Flight):            100 minutes
+    Average Time Charging (Per Charge Session):   36 minutes
+    Average Distance Traveled (Per Flight):      200 miles
+    Average Time Waiting for Charger:             56 minutes
+    Total Number of Faults:                        3
+    Total Number of Passenger Miles:            2400 miles
+
+Bravo eVtol Statistics:
+    Number of Vehicles:                            7
+    Average Flight Time (Per Flight):             39 minutes
+    Average Time Charging (Per Charge Session):   12 minutes
+    Average Distance Traveled (Per Flight):       66 miles
+    Average Time Waiting for Charger:             94 minutes
+    Total Number of Faults:                        4
+    Total Number of Passenger Miles:            4620 miles
+
+Charlie eVtol Statistics:
+    Number of Vehicles:                            5
+    Average Flight Time (Per Flight):             36 minutes
+    Average Time Charging (Per Charge Session):   48 minutes
+    Average Distance Traveled (Per Flight):      100 miles
+    Average Time Waiting for Charger:             58 minutes
+    Total Number of Faults:                        0
+    Total Number of Passenger Miles:            3000 miles
+
+Delta eVtol Statistics:
+    Number of Vehicles:                            4
+    Average Flight Time (Per Flight):            100 minutes
+    Average Time Charging (Per Charge Session):   37 minutes
+    Average Distance Traveled (Per Flight):      150 miles
+    Average Time Waiting for Charger:             72 minutes
+    Total Number of Faults:                        3
+    Total Number of Passenger Miles:            1200 miles
+
+Echo eVtol Statistics:
+    Number of Vehicles:                            2
+    Average Flight Time (Per Flight):             50 minutes
+    Average Time Charging (Per Charge Session):   18 minutes
+    Average Distance Traveled (Per Flight):       25 miles
+    Average Time Waiting for Charger:             88 minutes
+    Total Number of Faults:                        4
+    Total Number of Passenger Miles:             200 miles
+```
+
+
+# Test Suite Results
+
 TODO
