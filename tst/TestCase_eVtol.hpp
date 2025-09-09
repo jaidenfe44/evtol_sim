@@ -7,10 +7,6 @@
 class TestCase_eVtol: public TestCase, eVtol
 {
     public:
-        TestCase_eVtol(){};
-
-        void cleanup() override;
-
         // Test Case execution function
         void run(uint32_t &pass, uint32_t& fail) override
         {
@@ -36,6 +32,11 @@ class TestCase_eVtol: public TestCase, eVtol
         bool TC_getRange();
         bool TC_getPassengerMiles();
         bool TC_getFaults();
+
+    private:
+
+        void cleanup() override;
+
 };
 
 #endif // TEST_CASE_EVTOL_HPP

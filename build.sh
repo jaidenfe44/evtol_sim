@@ -43,7 +43,8 @@ build_test() {
 
 	srcList="
 		tst/*.cpp
-        src/Charger.cpp "
+        src/Charger.cpp
+        src/Port.cpp "
 
 	defs="-D TEST_SUITE"
 

@@ -8,10 +8,6 @@
 class TestCase_Charger: public TestCase, Charger
 {
     public:
-        TestCase_Charger(){};
-
-        void cleanup() override;
-
         // Test Case execution function
         void run(uint32_t &pass, uint32_t& fail) override
         {
@@ -25,9 +21,14 @@ class TestCase_Charger: public TestCase, Charger
         bool TC_add();
         bool TC_remove();
         bool TC_checkAvailability();
+
     private:
+
+        void cleanup() override;
+
         eVtol vehicle1;
         eVtol vehicle2;
+        eVtol vehicle3;
 };
 
 #endif // TEST_CASE_CHARGER_HPP

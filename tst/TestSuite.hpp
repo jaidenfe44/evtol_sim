@@ -2,6 +2,7 @@
 #include <chrono>
 #include "TestCase_eVtol.hpp"
 #include "TestCase_Charger.hpp"
+#include "TestCase_Port.hpp"
 
 
 class TestSuite
@@ -26,4 +27,5 @@ class TestSuite
 		// Test Cases
         TestCase_eVtol   tceVtol;
         TestCase_Charger tcCharger;
+        TestCase_Port    tcPort;
 };

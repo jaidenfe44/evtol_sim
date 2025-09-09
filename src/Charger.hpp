@@ -69,6 +69,7 @@ class Charger
 
     #ifdef TEST_SUITE
         friend class TestCase_Charger;
+        friend class TestCase_Port;
     #endif
 };
 

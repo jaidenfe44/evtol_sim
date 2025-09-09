@@ -18,6 +18,7 @@ void TestSuite::run()
 	// Execute test cases
     tceVtol.run(passed, failed);
     tcCharger.run(passed, failed);
+    tcPort.run(passed, failed);
 
 	// get end time 
 	auto end_t = std::chrono::system_clock::now();

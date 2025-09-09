@@ -50,6 +50,11 @@ Port::Port()
         vehicles_a[idx].computeFlightTime();
     }
 
+    for(int i = 0; i < chargers_a.size(); i++)
+    {
+        chargers_a[i].Id = i;
+    }
+
     // Set next available
     nextAvailableCharger = &chargers_a[0];
 }

@@ -40,6 +40,9 @@ class Port
         Charger* nextAvailableCharger = nullptr;
 
         void updateNextAvailable();
+    #ifdef TEST_SUITE
+        friend class TestCase_Port;
+    #endif
 };
 
 #endif // PORT_HPP
