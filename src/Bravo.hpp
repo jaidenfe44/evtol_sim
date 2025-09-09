@@ -6,7 +6,7 @@ class Bravo: public eVtol
     public:
         Bravo()
         {
-            company           = "Bravo";
+            company           = eVtolCompany::eBravo;
             speed             = 100;
             battCapacity      = 100;
             chargeTime        = 720; // 3600 * 0.2

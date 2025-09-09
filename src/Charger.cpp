@@ -4,7 +4,7 @@
 
 
 /**
- * TODO
+ * Add a vehicle to a charger
  *
  * @return void
  */
@@ -18,12 +18,11 @@ void Charger::add(eVtol* vehicle)
 
     // Set task time according to charge 
     vehicle->computeChargeTime();
-
 };
 
 
 /**
- * TODO
+ * Remove the current charging vehicle
  *
  * @return void
  */

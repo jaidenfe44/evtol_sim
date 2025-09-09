@@ -6,7 +6,7 @@ class Charlie: public eVtol
     public:
         Charlie()
         {
-            company           = "Charlie";
+            company           = eVtolCompany::eCharlie;
             speed             = 160;
             battCapacity      = 220;
             chargeTime        = 2880; // 3600 * 0.8

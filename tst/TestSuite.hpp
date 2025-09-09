@@ -1,5 +1,7 @@
 
 #include <chrono>
+#include "TestCase_eVtol.hpp"
+#include "TestCase_Charger.hpp"
 
 
 class TestSuite
@@ -21,5 +23,7 @@ class TestSuite
 		unsigned int failed = 0;
 		std::chrono::milliseconds execTime;
 
-		// TODO: Test Cases
+		// Test Cases
+        TestCase_eVtol   tceVtol;
+        TestCase_Charger tcCharger;
 };

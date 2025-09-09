@@ -6,7 +6,7 @@ class Echo: public eVtol
     public:
         Echo()
         {
-            company           = "Echo";
+            company           = eVtolCompany::eEcho;
             speed             = 30;
             battCapacity      = 150;
             chargeTime        = 1080; // 3600 * 0.3

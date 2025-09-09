@@ -6,12 +6,16 @@
 #include <ctime>
 
 /**
- * TODO
+ * Port constructor
+ *
+ * Randomize the population of the vehicle array and compute the initial flight times of each
+ *
+ * @return a Port class
  */
 Port::Port()
 {
     srand(time(0));
-    // TODO: Randomize the population of vehicles_a
+    // Randomize the population of vehicles_a
     for(int idx = 0; idx < vehicles_a.size(); idx++)
     {
         // Set company and statistics
@@ -52,13 +56,20 @@ Port::Port()
 
 
 /**
- * TODO
+ * Step through the simulation one second at a time
+ *
+ * @return void
  */
 void Port::step()
 {
+    static uint32_t faultCount = 0;
+
     // Check if vehicles have completed their current tasks
 	for(int idx = 0; idx < vehicles_a.size(); idx++)
     {
+        // Calculate if a fault occurs
+        if((faultCount % 3600) == 0) vehicles_a[idx].computeFault();
+
         // If the vehicles are waiting for a charger, increment queue time, otherwise decrement the task time
         vehicles_a[idx].state == VehicleState::eQueued ? vehicles_a[idx].queueTime++ : vehicles_a[idx].taskTime--;
 
@@ -84,11 +95,14 @@ void Port::step()
             }
         }
     }
+    faultCount++;
 };
 
 
 /**
- * TODO
+ * Add a vehicle to the next available charger
+ *
+ * @return void
  */
 void Port::addToCharger(eVtol* vehicle)
 {
@@ -107,7 +121,11 @@ void Port::addToCharger(eVtol* vehicle)
 
 
 /**
- * TODO
+ * Remove a vehicle from the charger it is charging at
+ *
+ * Once the vehicle is finished charging, this function rmeoves it from the Charger
+ *
+ * @return void
  */
 void Port::removeFromCharger(eVtol* vehicle)
 {
@@ -129,16 +147,19 @@ void Port::removeFromCharger(eVtol* vehicle)
 
 
 /**
- * TODO
+ * Update the next available Charger
+ *
+ * @return void
  */
 void Port::updateNextAvailable()
 {
-    // TODO
+    // Sequence through chargers to update availability
     for(int idx = 0; idx < chargers_a.size(); idx++)
     {
-        // TODO
+        // Check if the availability weight is less than that of the current next available charger
         if(chargers_a[idx].checkAvailability() < nextAvailableCharger->checkAvailability())
         {
+            // Set next available charger
             nextAvailableCharger = &chargers_a[idx];
         }
     }
@@ -146,21 +167,45 @@ void Port::updateNextAvailable()
 
 
 /**
- * TODO
+ * Print out vehicle statistics
+ *
+ * @return void 
  */
 void Port::generateReport()
 {
-	printf("\nGenerate Report Called\n");
+	printf("\nGenerating Simulation Report...\n");
 
-    int i = 1;
+    // Note: index 0 = Alpha, 1 = Bravo, 2 = Charlie, 3 = Delta, 4 = Echo
+    const char* companies[5] = {"Alpha", "Bravo", "Charlie", "Delta", "Echo"};
+    uint32_t numVehicles[5]  = {0};
+    uint32_t flightTime[5]   = {0};
+    uint32_t distance[5]     = {0};
+    uint32_t chargeTime[5]   = {0};
+    uint32_t faults[5]       = {0};
+    uint32_t passMiles[5]    = {0};
+    uint32_t queueTime[5]    = {0};
+
 	for(eVtol vehicle : vehicles_a)
 	{
-		printf("Vehicle %02i Company: %s\n", i++, vehicle.company.c_str());
+        numVehicles[vehicle.company]++;
+        flightTime[vehicle.company] = vehicle.getFlightTime();
+        chargeTime[vehicle.company] = vehicle.getChargeTime();
+        distance[vehicle.company]   = vehicle.getRange();
+        faults[vehicle.company]    += vehicle.getFaults();
+        passMiles[vehicle.company] += vehicle.getPassengerMiles();
+        queueTime[vehicle.company] += vehicle.queueTime;
 	}
 
-    for(Charger c : chargers_a)
+    for(int i = 0; i < 5; i++)
     {
-        printf("Charger %i\n", c.Id);
-        printf("    Queue Size: %i\n", c.checkAvailability());
+
+        printf("\n%s eVtol Statistics:\n", companies[i]);
+        printf("    Number of Vehicles:                         %4i\n", numVehicles[i]);
+        printf("    Average Flight Time (Per Flight):           %4i minutes\n", flightTime[i]);
+        printf("    Average Time Charging (Per Charge Session): %4i minutes\n", chargeTime[i]);
+        printf("    Average Distance Traveled (Per Flight):     %4i miles\n",   distance[i]);
+        printf("    Average Time Waiting for Charger:           %4i minutes\n", (queueTime[i]/numVehicles[i])/60);
+        printf("    Total Number of Faults:                     %4i\n",         faults[i]);
+        printf("    Total Number of Passenger Miles:            %4i miles\n",   passMiles[i]);
     }
 };

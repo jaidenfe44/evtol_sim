@@ -13,7 +13,9 @@ void TestSuite::run()
 
 	// Note: Could improve execution time by parallelizing test case execution
 
-	// TODO: Execute test cases
+	// Execute test cases
+    tceVtol.run(passed, failed);
+    tcCharger.run(passed, failed);
 
 	// get end time 
 	auto end_t = std::chrono::system_clock::now();

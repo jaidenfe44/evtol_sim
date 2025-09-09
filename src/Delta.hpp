@@ -6,7 +6,7 @@ class Delta: public eVtol
     public:
         Delta()
         {
-            company           = "Delta";
+            company           = eVtolCompany::eDelta;
             speed             = 90;
             battCapacity      = 120;
             chargeTime        = 2232; // 3600 * 0.62

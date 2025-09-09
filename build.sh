@@ -42,8 +42,7 @@ build_test() {
 			 -Itst/"
 
 	srcList="
-		tst/TestSuite.cpp
-		tst/main.cpp "
+		tst/*.cpp "
 
 	defs="-D TEST_SUITE"
 
