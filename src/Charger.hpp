@@ -7,7 +7,7 @@
 
 
 /**
- * TODO
+ * Charger class in charge of managing the vehicles that are charging or queued to charge
  */
 class Charger
 {

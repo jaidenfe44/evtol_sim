@@ -48,7 +48,9 @@ class eVtol
         }
 
         /**
-         * TODO
+         * Calculate the flight time and set the taskTime to that value
+         *
+         * We also update the passenger miles here
          */
         void computeFlightTime()
         {
@@ -57,7 +59,7 @@ class eVtol
         }
 
         /**
-         * TODO
+         * Calculate the time it takes to Charge and set it to taskTime
          */
         void computeChargeTime()
         {
@@ -65,7 +67,9 @@ class eVtol
         }
 
         /**
-         * TODO
+         * Compute if a fault occurred and increment the fault variable
+         *
+         * This function should be called once a sim hour
          */
         void computeFault()
         {
@@ -114,31 +118,50 @@ class eVtol
          */
         uint32_t getFaults(){return faults;};
 
+        // Which company the vehicle belongs to
 		eVtolCompany company;
+        // The state the vehicle is in
         VehicleState state = VehicleState::eAirborne;
-        // TODO: (in seconds)
+        // The time the current task will take (in seconds)
         uint32_t taskTime = 0;
 
-        // TODO: (in seconds)
+        // The time the vehicle has spent queued (in seconds)
         uint32_t queueTime = 0;
+
+        // The index of the charger the vehicle is using
         uint32_t vehicleCharger = 0;
 
 	protected:
+        // The cruise speed of the vehicle (mph)
 		uint32_t speed = 0;
+        // The battery capacity (kWh)
 		uint32_t battCapacity = 0;
-		uint32_t chargeTime = 0; // In Seconds
+        // The amount of time to fully charge the batter (in seconds)
+		uint32_t chargeTime = 0;
+        // Energy used at cruise (kWh/mile)
 		float energyConsumption = 0;
+        // Passenger count per flight
 		unsigned int passengers = 0;
+        // Probability of a fault occurring per hour (percentage i.e. 0.25)
 		float faultProbability = 0;
-        uint32_t range = 0; // Number of miles traveled per flight (on one charge)
+        // Number of miles traveled per flight, on one battery charge, in miles (battery capacity / energy consumption)
+        uint32_t range = 0;
+        // The amount of time, in seconds, a flight takes on a full battery ((3600/speed) * range)
         uint32_t flightTime = 0;
 
+        // Total number of miles passengers have flown
         uint32_t passengerMiles = 0;
+        // Number of total faults
         uint32_t faults = 0;
+        // Number of passenger miles per flight (passengers * range)
         uint32_t passMilesPerFlight = 0;
 
         /**
-         * TODO
+         * Initialize values based on company specific stats
+         *
+         * Set range, flight time, and passenger miles per flight
+         *
+         * @return void
          */
         void init()
         {

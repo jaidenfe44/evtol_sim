@@ -4,7 +4,9 @@
 
 
 /**
- * TODO
+ * Main loop of the simulation
+ *
+ * In charge of handling stepping through the sim and managing the system counts and simulation report generation
  */
 int main() {
 	// Initialize System Ticks (minutes)
