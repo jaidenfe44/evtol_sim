@@ -156,4 +156,29 @@ Echo eVtol Statistics:
 
 # Test Suite Results
 
-TODO
+```
+Building Test Suite
+Running Test Suite...
+    Test Case: eVtol::atCharger                 Passed
+    Test Case: eVtol::computeFlightTime         Passed
+    Test Case: eVtol::computeChargeTime         Passed
+    Test Case: eVtol::computeFault              Passed
+    Test Case: eVtol::getFlightTime             Passed
+    Test Case: eVtol::getChargeTime             Passed
+    Test Case: eVtol::getRange                  Passed
+    Test Case: eVtol::getPassengerMiles         Passed
+    Test Case: eVtol::getFaults                 Passed
+    Test Case: Charger::add                     Passed
+    Test Case: Charger::remove                  Passed
+    Test Case: Charger::checkAvailability       Passed
+    Test Case: Port::step                       Passed
+    Test Case: Port::addToCharger               Passed
+    Test Case: Port::removeFromCharger          Passed
+    Test Case: Port::updateNextAvailable        Passed
+
+Test Report
+    Passed: 16
+    Failed: 0
+
+    Runtime: 42 us
+```
