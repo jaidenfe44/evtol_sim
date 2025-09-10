@@ -41,12 +41,21 @@ class Charger
         void add(eVtol* vehicle);
 
         /**
-         * TODO
+         * Remove the vehicle object from the front of the charging queue.
+         *
+         * If the queue is emtpy nothing will be removed. When there is a queued
+         * and charging vehicle the charging vehicle is removed and the first
+         * queued vehicle's state is updated to charging. If there is only one 
+         * vehicle in the queue, no queued vehicle state is updated. The object
+         * at the front of the queue is considered to be "charging" and the
+         * vehicles state should reflect this.
+         *
+         * @return void
          */
         void remove();
 
         /**
-         * TODO
+         * Return the availability weight of this charger (lower is better)
          */
         uint32_t checkAvailability();
 
@@ -63,7 +72,7 @@ class Charger
         /**
          * The charging queue
          *
-         * TODO
+         * The vehicle at the front of the queue is considered "charging", all other vehicles in the queue are "queued"
          */
         std::queue<eVtol*> chargingQueue;
 

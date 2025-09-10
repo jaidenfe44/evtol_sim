@@ -2,9 +2,12 @@
 
 void TestCase_Port::cleanup()
 {
-    for(Charger c : chargers_a)
+    for(int i = 0; i < chargers_a.size(); i++)
     {
-        while(!c.chargingQueue.empty()) c.chargingQueue.pop();
+        while(!chargers_a[i].chargingQueue.empty())
+        {
+            chargers_a[i].chargingQueue.pop();
+        }
     }
 
 }
@@ -34,9 +37,12 @@ bool TestCase_Port::TC_addToCharger()
 {
     // Initialize test case
     tcPass = true;
-    for(Charger c : chargers_a)
+    for(int i = 0; i < chargers_a.size(); i++)
     {
-        while(!c.chargingQueue.empty()) c.chargingQueue.pop();
+        while(!chargers_a[i].chargingQueue.empty())
+        {
+            chargers_a[i].chargingQueue.pop();
+        }
     }
     nextAvailableCharger = nullptr;
 
@@ -141,13 +147,44 @@ bool TestCase_Port::TC_removeFromCharger()
 
 bool TestCase_Port::TC_updateNextAvailable()
 {
-    // TODO: Initialize test case
+    // Initialize test case
     tcPass = true;
+    for(int i = 0; i < chargers_a.size(); i++)
+    {
+        while(!chargers_a[i].chargingQueue.empty())
+        {
+            chargers_a[i].chargingQueue.pop();
+        }
+    }
 
-    // TODO: Execute Function
+    nextAvailableCharger = &chargers_a[0];
 
-    // TODO: Verify expected behavior
-    tcAssert(false, __func__, "TODO");
+    // Execute Function
+    updateNextAvailable();
+
+    // Verify expected behavior
+    tcAssert(nextAvailableCharger == &chargers_a[0], __func__, "When all charger queues are empty the next available should not update, but the charger did update");
+
+    // Set up another test case
+    nextAvailableCharger = &chargers_a[1];
+    chargers_a[1].chargingQueue.push(&vehicles_a[0]);
+
+    // Execute Function
+    updateNextAvailable();
+
+    // Verify expected behavior
+    tcAssert(nextAvailableCharger == &chargers_a[0], __func__, "Next available charger was not updated to Charger at index 0");
+
+    // Test case where charger 1 has 2 vehicles, charger 0 has one vehicle and charger 2 has no vehicles
+    chargers_a[1].chargingQueue.push(&vehicles_a[1]);
+    chargers_a[0].chargingQueue.push(&vehicles_a[2]);
+    nextAvailableCharger = &chargers_a[1];
+
+    // Execute function
+    updateNextAvailable();
+
+    // verify expected behavior
+    tcAssert(nextAvailableCharger == &chargers_a[2], __func__, "Next available charger was not updated to Charger at index 2");
 
     // Cleanup
     cleanup();
