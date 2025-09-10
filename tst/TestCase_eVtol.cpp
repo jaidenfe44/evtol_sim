@@ -58,8 +58,8 @@ bool TestCase_eVtol::TC_computeFlightTime()
     computeFlightTime();
 
     // Verify expected behavior
-    tcAssert(taskTime == flightTime, __func__, "TODO");
-    tcAssert(passengerMiles == passMilesPerFlight, __func__, "TODO");
+    tcAssert(taskTime == flightTime, __func__, "taskTime was not updated as expected");
+    tcAssert(passengerMiles == passMilesPerFlight, __func__, "Passenger Miles were not updated as expected");
 
     // Cleanup
     cleanup();
@@ -82,7 +82,7 @@ bool TestCase_eVtol::TC_computeChargeTime()
     computeChargeTime();
 
     // Verify expected behavior
-    tcAssert(taskTime == chargeTime, __func__, "TODO");
+    tcAssert(taskTime == chargeTime, __func__, "vehicle charge time was not set to taskTime");
 
     // Cleanup
     cleanup();
@@ -96,13 +96,17 @@ bool TestCase_eVtol::TC_computeChargeTime()
 
 bool TestCase_eVtol::TC_computeFault()
 {
-    // TODO: Initialize test case
+    // Initialize test case
     tcPass = true;
+    faults = 0;
+    faultProbability = 0.6;
 
-    // TODO: Execute Function
+    // Execute Function
+    // Note: due to the random nature of this function multiple executions are needed to ensure faults are detected. Many executions would be needed to verify the percentage.
+    for(int i = 0; i < 10; i++) computeFault();
 
-    // TODO: Verify expected behavior
-    tcAssert(false, __func__, "TODO");
+    // Verify expected behavior
+    tcAssert(faults != 0, __func__, "Faults were not detected but should have been");
 
     // Cleanup
     cleanup();
@@ -126,7 +130,7 @@ bool TestCase_eVtol::TC_getFlightTime()
     checkFlightTime = getFlightTime();
 
     // Verify expected behavior
-    tcAssert(checkFlightTime == expectedFlightTime, __func__, "TODO");
+    tcAssert(checkFlightTime == expectedFlightTime, __func__, "expected flight time was not returned");
 
     // Cleanup
     cleanup();
@@ -150,7 +154,7 @@ bool TestCase_eVtol::TC_getChargeTime()
     checkChargeTime = getChargeTime();
 
     // Verify expected behavior
-    tcAssert(checkChargeTime == expectedChargeTime, __func__, "TODO");
+    tcAssert(checkChargeTime == expectedChargeTime, __func__, "Expected charge time was not returned");
 
     // Cleanup
     cleanup();
@@ -173,7 +177,7 @@ bool TestCase_eVtol::TC_getRange()
     checkRange = getRange();
 
     // Verify expected behavior
-    tcAssert(checkRange == range, __func__, "TODO");
+    tcAssert(checkRange == range, __func__, "Expected range was not returned");
 
     // Cleanup
     cleanup();
@@ -196,7 +200,7 @@ bool TestCase_eVtol::TC_getPassengerMiles()
     checkPassengerMiles = getPassengerMiles();
 
     // Verify expected behavior
-    tcAssert(checkPassengerMiles == passengerMiles, __func__, "TODO");
+    tcAssert(checkPassengerMiles == passengerMiles, __func__, "Expected passenger miles were not returned");
 
     // Cleanup
     cleanup();
@@ -219,7 +223,7 @@ bool TestCase_eVtol::TC_getFaults()
     checkFaults = getFaults();
 
     // Verify expected behavior
-    tcAssert(checkFaults == faults, __func__, "TODO");
+    tcAssert(checkFaults == faults, __func__, "Expected faults were not returned");
 
     // Cleanup
     cleanup();
