@@ -95,7 +95,9 @@ Here, we leverage the stored `eVtol::vehicleCharger` variable that contains the 
 
 ## eVTOL Vehicle Design
 
-TODO
+The vehicle design has been simplified to a series of functions that etiher set or return constants, variables, or slightly modified variables (i.e. converting from second to minutes).
+
+TODO: Add more details
 
 
 ---
