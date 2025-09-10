@@ -97,7 +97,7 @@ Here, we leverage the stored `eVtol::vehicleCharger` variable that contains the 
 
 The vehicle design has been simplified to a series of functions that etiher set or return constants, variables, or slightly modified variables (i.e. converting from second to minutes).
 
-TODO: Add more details
+Using the provided company vehicle specifications we can calculate constant values for each of the telemetry points as well as the flight time and charge time in seconds. The only function that is not updating the taskTime with a constant or returning a variable is the `eVtol::computeFault()` function. In this function we take a randomly generated number between 0 - 100 and check if its below the the fault probability (out of 100). If it is, the vehicle faults are incremented. If not, nothing happens.
 
 
 ---
